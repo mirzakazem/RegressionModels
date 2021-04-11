@@ -16,7 +16,7 @@ summary(simpledata$Sales)
 # Min value in the dataset
 # 25% of the values are less than or equal: 1st Qu
 # Median the that value in the middle of the dataset (half of the values smaller where the other hal is larger)
-# Mean = sigma/n
+# Mean = sum of xi/n
 # 75% of the values are less or equal 3rd Qu: 
 # Max value in the dataset
 
@@ -40,18 +40,20 @@ cor(simpledata$TV, simpledata$Sales)  # calculate correlation between TV and Sal
 
 # 2) Build the simple linear regression model that predicts the sales according to the values of 
 #    investments in the Television
-linMod=lm(formula=TV~Sales, data=ad)
+linMod=lm(formula=Sales~TV, data=ad)
 
 # 3
 # a) Capture the model summary.
 summary(linMod)
 
 # b) Comment on the p-values
-# Intercept P value has two stars
-# Sales P value < 0.05 and has three stars
-# Sales p value is extermly small (we reject H0)
+#Beta 0 = 7.032
+#Beta1 0.0475
+# Intercept P value has two stars (high confidence)
+# TV P value < 0.05 and has three stars (very high confidence)
+# TV p value is extermly small (we reject H0)
 #which indicate there is a strong relation between the two variables
-# Sales variable is Significant
+# TV variable is Significant
 
 # c) Comment on the R-squared value.
 # R squared is more than 0.6 which
@@ -67,6 +69,10 @@ plot(linMod)
 
 # 5) For an investments in the Televesion of 51.7, what are the estimated sales?
 #    What is the prediction confidence interval?
-predict(linMod,data.frame(Sales=51.7),interval="prediction",level=0.95)
 
+predict(linMod,data.frame(TV=51.7),interval="prediction",level=0.95)
+
+# 6) Do you suggest a more restreint model?
+# yes, we can opmtimze the model by collecting more data
+# and by using the other variables (radio and newspaper)
 
